@@ -29,14 +29,14 @@ class RobotController:
     def currentBehavior(self):
         if self.right_feeler == 1 and self.left_feeler == 0:
             self.right_counter+=1
-            self.twistCmd.angular.z = -1.1
-            self.twistCmd.linear.x = 0.5
+            self.twistCmd.angular.z = -2.2
+            self.twistCmd.linear.x = 1
             self.publishTwistCmd()
             #print("right_feeler = 1")
         elif self.left_feeler == 1 and self.right_feeler == 0:
             self.left_counter+=1
-            self.twistCmd.angular.z = 1.1
-            self.twistCmd.linear.x = 0.5
+            self.twistCmd.angular.z = 2.2
+            self.twistCmd.linear.x = 1
             self.publishTwistCmd()
             #print("left_feeler = 1")
         elif self.left_feeler == 1 and self.right_feeler == 1:
