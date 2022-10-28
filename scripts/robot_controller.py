@@ -43,11 +43,11 @@ class RobotController:
             self.left_right_counter+=1
             if self.left_right_counter >= 3:
                 if self.right_counter > self.left_counter:
-                    self.twistCmd.angular.z = 2.2
+                    self.twistCmd.angular.z = 4.81 #I think 4.85 is max because it didn't work at that speed 
                 elif self.left_counter > self.right_counter:
-                    self.twistCmd.angular.z = -2.2
+                    self.twistCmd.angular.z = -4.81 #I think 4.85 is max because it didn't work at that speed
                 else:
-                    self.twistCmd.angular.z = 2.2
+                    self.twistCmd.angular.z = 4.81 #I think 4.85 is max because it didn't work at that speed
                 rospy.Rate(1).sleep
                 self.left_right_counter=0
                 self.left_counter=0
