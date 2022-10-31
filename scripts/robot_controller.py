@@ -17,7 +17,7 @@ class RobotController:
         self.right_counter=0
         self.left_feeler = 0
         self.right_feeler = 0
-        self.rate = rospy.Rate(20)
+        self.rate = rospy.Rate(10)
     def publishTwistCmd(self):
         self.vel_pub.publish(self.twistCmd)
     def left_callback(self, msg):
@@ -29,26 +29,26 @@ class RobotController:
     def currentBehavior(self):
         if self.right_feeler == 1 and self.left_feeler == 0:
             self.right_counter+=1
-            self.twistCmd.angular.z = -2.2
-            self.twistCmd.linear.x = 1
+            self.twistCmd.angular.z = -2.0
+            self.twistCmd.linear.x = 0.5
             self.publishTwistCmd()
             #print("right_feeler = 1")
         elif self.left_feeler == 1 and self.right_feeler == 0:
             self.left_counter+=1
-            self.twistCmd.angular.z = 2.2
-            self.twistCmd.linear.x = 1
+            self.twistCmd.angular.z = 2.0
+            self.twistCmd.linear.x = 0.5
             self.publishTwistCmd()
             #print("left_feeler = 1")
         elif self.left_feeler == 1 and self.right_feeler == 1:
             self.left_right_counter+=1
             if self.left_right_counter >= 3:
                 if self.right_counter > self.left_counter:
-                    self.twistCmd.angular.z = 4.81 #I think 4.85 is max because it didn't work at that speed 
+                    self.twistCmd.angular.z = 3.0 #I think 4.85 is max because it didn't work at that speed 
                 elif self.left_counter > self.right_counter:
-                    self.twistCmd.angular.z = -4.81 #I think 4.85 is max because it didn't work at that speed
+                    self.twistCmd.angular.z = -3.0 #I think 4.85 is max because it didn't work at that speed
                 else:
-                    self.twistCmd.angular.z = 4.81 #I think 4.85 is max because it didn't work at that speed
-                rospy.Rate(1).sleep
+                    self.twistCmd.angular.z = 3.0 #I think 4.85 is max because it didn't work at that speed
+                #rospy.Rate(1).sleep
                 self.left_right_counter=0
                 self.left_counter=0
                 self.right_counter=0
