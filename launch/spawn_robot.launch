@@ -1,0 +1,3 @@
+<launch>
+    <node name="unity_node" pkg="unitysim" type="spawnrobot.py" output="screen" launch-prefix="$(find asr_canyon_run)/launch/call_unity_service.sh"/>
+</launch>
